@@ -343,14 +343,22 @@ if __name__ == "__main__":
         suffix = pp.suffix
         # Default bot_id from filename, but if it would collide (very common
         # with the "bots/<name>/bot.py" layout where every stem is "bot"),
-        # fall back to the parent directory name.
+        # fall back to the parent directory name. If that also collides
+        # (e.g. the same bot path passed twice for self-play testing),
+        # append a numeric suffix so every entry is unique.
         if suffix in (".py", ".zip"):
             bot_id = pp.stem
         else:
             bot_id = pp.name or "bot_" + str(i)
         if bot_id in paths or bot_id in ("bot",):
             bot_id = pp.parent.name or ("bot_" + str(i))
-        paths[bot_id or "bot_" + str(i)] = path
+        base = bot_id or "bot_" + str(i)
+        bot_id = base
+        n = 2
+        while bot_id in paths:
+            bot_id = base + "_" + str(n)
+            n += 1
+        paths[bot_id] = path
 
     match_id = args.match_id or os.environ.get("MATCH_ID") or "local_" + uuid.uuid4().hex[:8]
 
