@@ -85,7 +85,9 @@ def decide(game_state: dict) -> dict:
       action_log       list  — all actions so far this hand
 
     players[i] keys (public info only, no hole cards):
-      seat, bot_id, stack, is_active, is_folded, is_all_in, bet_this_street
+      seat, bot_id, stack, state, is_folded, is_all_in, bet_this_street, hole_cards
+      `state` is a string: "active" | "folded" | "all_in" | "busted"
+      `hole_cards` is always None for opponents (only revealed at showdown)
     """
 
     # ── Your strategy goes here ───────────────────────────────────────────────
