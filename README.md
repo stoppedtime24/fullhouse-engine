@@ -175,7 +175,7 @@ Top 64 play a single-elimination bracket live on stage. Winner takes the prize p
 
 ## Reference bots
 
-Four bots are included to test against:
+Five bots are included to test against:
 
 | Bot | Strategy |
 |-----|----------|
@@ -183,6 +183,7 @@ Four bots are included to test against:
 | `bots/aggressor/bot.py` | Raises constantly regardless of hand |
 | `bots/mathematician/bot.py` | Calls only when getting 3:1 pot odds |
 | `bots/shark/bot.py` | Tight preflop, position-aware, value bets |
+| `bots/ref_bot_2/bot.py` | Pot-odds caller — heuristic reference baseline |
 
 ---
 
